@@ -8,6 +8,9 @@ module.exports = (sequelize) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        notNull: { msg: "The diet must be completed" },
+      },
     },
   });
 };
