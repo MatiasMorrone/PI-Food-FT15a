@@ -28,6 +28,7 @@ module.exports = (sequelize) => {
     healthiness: { type: DataTypes.FLOAT },
     stepbystep: { type: DataTypes.TEXT },
     image: { type: DataTypes.STRING },
-    id: { type: DataTypes.UUID },
+    id: { type: DataTypes.UUID, primaryKey: true },
+    // timestamps: false,
   });
 };
