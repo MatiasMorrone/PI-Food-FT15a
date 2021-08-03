@@ -3,7 +3,7 @@ const {
   getRecipesbyName,
   getRecipesbyId,
   postRecipe,
-} = require("../Controllers/recipesFunctions");
+} = require("../Functions/recipesFunctions");
 const router = Router();
 
 router.get("/", getRecipesbyName);

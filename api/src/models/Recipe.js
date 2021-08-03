@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define("Recipe", {
-    name: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
@@ -16,19 +16,18 @@ module.exports = (sequelize) => {
       allowNull: false,
       validate: { notNull: { msg: "The summary must be completed" } },
     },
-    punctuation: {
+    spoonacularScore: {
       type: DataTypes.FLOAT,
-      validate: {
-        isFloat: {
-          args: true,
-          msg: "Punctuation must be a number like this XX.XX",
-        },
-      },
     },
-    healthiness: { type: DataTypes.FLOAT },
-    stepbystep: { type: DataTypes.TEXT },
+    healthScore: { type: DataTypes.FLOAT },
+    analyzedInstructions: { type: DataTypes.ARRAY(DataTypes.JSON) },
     image: { type: DataTypes.STRING },
-    id: { type: DataTypes.UUID, primaryKey: true },
-    // timestamps: false,
+    id: {
+      allowNull: false,
+      type: DataTypes.UUID,
+      primaryKey: true,
+      defaultValue: DataTypes.UUIDV4,
+    },
+    diets: { type: DataTypes.ARRAY(DataTypes.STRING) },
   });
 };
