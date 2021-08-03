@@ -9,4 +9,4 @@ function Headers(req, res, next) {
   next();
 }
 
-module.exports = { Headers };
+module.exports = Headers;

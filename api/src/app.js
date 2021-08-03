@@ -4,8 +4,8 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const routes = require("./routes/index.js");
 var cors = require("cors");
-const { Headers } = require("./Utils/Middelwares/headers");
-const { errorHandler } = require("./Utils/Middelwares/headers");
+const Headers = require("./Utils/Middelwares/headers");
+const errorHandler = require("./Utils/Middelwares/headers");
 
 require("./db.js");
 
