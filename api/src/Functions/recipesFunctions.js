@@ -4,7 +4,7 @@ const { YOUR_API_KEY } = process.env;
 const { Op } = require("sequelize");
 const { v4: uuidv4 } = require("uuid");
 
-async function getRecipesbyName(req, res) {
+async function getRecipesbyName(req, res, next) {
   const { title } = req.query;
   if (title) {
     try {
@@ -40,7 +40,7 @@ async function getRecipesbyName(req, res) {
   }
 }
 
-async function getRecipesbyId(req, res) {
+async function getRecipesbyId(req, res, next) {
   const { id } = req.params;
   if (id) {
     try {
@@ -63,14 +63,14 @@ async function getRecipesbyId(req, res) {
         res.json(recetaapi);
       }
     } catch (err) {
-      return console.log(err);
+      next(err);
     }
   } else {
     res.json("You need to enter an ID to search by ID");
   }
 }
 
-async function postRecipe(req, res) {
+async function postRecipe(req, res, next) {
   const {
     title,
     summary,
@@ -80,20 +80,26 @@ async function postRecipe(req, res) {
     image,
     diets,
   } = req.body;
-  if (!title || !summary) {
-    return res.json("You must enter a title and a summary to create a recipe");
+  try {
+    if (!title || !summary) {
+      return res.json(
+        "You must enter a title and a summary to create a recipe"
+      );
+    }
+    await Recipe.create({
+      title: title,
+      summary: summary,
+      spoonacularScore: parseFloat(spoonacularScore),
+      healthScore: parseFloat(healthScore),
+      analyzedInstructions: analyzedInstructions,
+      image: image,
+      diets,
+      id: uuidv4(),
+    });
+    res.json("Recipe uploaded");
+  } catch (error) {
+    next(error);
   }
-  await Recipe.create({
-    title: title,
-    summary: summary,
-    spoonacularScore: parseFloat(spoonacularScore),
-    healthScore: parseFloat(healthScore),
-    analyzedInstructions: analyzedInstructions,
-    image: image,
-    diets,
-    id: uuidv4(),
-  });
-  res.json("Recipe uploaded");
 }
 
 module.exports = { getRecipesbyId, getRecipesbyName, postRecipe };
