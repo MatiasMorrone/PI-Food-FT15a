@@ -17,10 +17,12 @@ module.exports = (sequelize) => {
       validate: { notNull: { msg: "The summary must be completed" } },
     },
     spoonacularScore: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.INTEGER,
     },
-    healthScore: { type: DataTypes.FLOAT },
-    analyzedInstructions: { type: DataTypes.ARRAY(DataTypes.JSON) },
+    healthScore: { type: DataTypes.INTEGER },
+    analyzedInstructions: {
+      type: DataTypes.ARRAY(DataTypes.JSON),
+    },
     image: { type: DataTypes.STRING },
     id: {
       allowNull: false,

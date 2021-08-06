@@ -1,6 +1,6 @@
 const { Diet } = require("../db");
 
-async function getTypes(req, res) {
+async function getTypes(req, res, next) {
   try {
     let muestra = await Diet.findAll();
     muestra = muestra.map((dieta) => {
@@ -8,8 +8,7 @@ async function getTypes(req, res) {
     });
     res.json(muestra);
   } catch (error) {
-    console.log(error);
-    // return next(error);
+    next(error);
   }
 }
 

@@ -2,6 +2,25 @@
   text-align: center;
 }
 
+.container {
+  margin: 0 auto;
+  max-width: 1300px;
+}
+
+.flexbox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Tituloapp {
+  text-align: left;
+}
+
+.landing {
+  text-align: start;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

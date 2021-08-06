@@ -5,21 +5,22 @@ const { Op } = require("sequelize");
 const { v4: uuidv4 } = require("uuid");
 
 async function getRecipesbyName(req, res, next) {
-  const { title } = req.query;
-  if (title) {
+  const { name } = req.query;
+  if (name) {
     try {
-      let recetasbasededatos = await Recipe.findAll({
-        where: { title: { [Op.like]: `%${title}%` } },
+      let dbrecipes = await Recipe.findAll({
+        where: { title: { [Op.like]: `%${name}%` } },
       });
 
-      const recetas = await axios.get(
-        `https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&addRecipeInformation=true`
+      const recipes = await axios.get(
+        `https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&number=100&addRecipeInformation=true`
       );
 
-      let encontrado = recetas.data.results.filter((el) =>
-        el.title.toUpperCase().includes(title.toUpperCase())
+      let finded = recipes.data.results.filter((el) =>
+        el.title.toUpperCase().includes(name.toUpperCase())
       );
-      encontrado = encontrado.map((e) => {
+
+      finded = finded.map((e) => {
         return {
           title: e.title,
           summary: e.summary,
@@ -30,13 +31,15 @@ async function getRecipesbyName(req, res, next) {
           diets: e.diets,
         };
       });
-
-      return res.json(encontrado.concat(recetasbasededatos));
+      if (finded.length === 0 && dbrecipes.length === 0) {
+        return res.status(400).json("Recipe not found");
+      }
+      return res.status(200).json(finded.concat(dbrecipes));
     } catch (error) {
       next(error);
     }
   } else {
-    res.sendStatus(400);
+    res.status(400).json("Please include a name to find a recipe");
   }
 }
 
@@ -46,7 +49,7 @@ async function getRecipesbyId(req, res, next) {
     try {
       if (id.length >= 10 && typeof id === "string") {
         const recetaidbase = await Recipe.findByPk(id);
-        res.json(recetaidbase);
+        return res.json(recetaidbase);
       } else {
         let recetaapi = await axios.get(
           `https://api.spoonacular.com/recipes/${id}/information?apiKey=${YOUR_API_KEY}`
@@ -60,39 +63,40 @@ async function getRecipesbyId(req, res, next) {
           image: recetaapi.data.image,
           diets: recetaapi.data.diets,
         };
-        res.json(recetaapi);
+        return res.json(recetaapi);
       }
     } catch (err) {
-      next(err);
+      next((err.message = "Recipe not found"));
     }
   } else {
-    res.json("You need to enter an ID to search by ID");
+    res.status(400).json("You need to enter an ID to search by ID");
   }
 }
 
 async function postRecipe(req, res, next) {
-  const {
-    title,
-    summary,
-    spoonacularScore,
-    healthScore,
-    analyzedInstructions,
-    image,
-    diets,
-  } = req.body;
   try {
+    const {
+      title,
+      summary,
+      spoonacularScore,
+      healthScore,
+      analyzedInstructions,
+      image,
+      diets,
+    } = req.body;
+
     if (!title || !summary) {
       return res.json(
         "You must enter a title and a summary to create a recipe"
       );
     }
     await Recipe.create({
-      title: title,
-      summary: summary,
-      spoonacularScore: parseFloat(spoonacularScore),
-      healthScore: parseFloat(healthScore),
-      analyzedInstructions: analyzedInstructions,
-      image: image,
+      title,
+      summary,
+      spoonacularScore: parseInt(spoonacularScore) || 0,
+      healthScore: parseInt(healthScore) || 0,
+      analyzedInstructions,
+      image,
       diets,
       id: uuidv4(),
     });
