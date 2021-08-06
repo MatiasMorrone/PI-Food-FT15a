@@ -31,5 +31,6 @@ module.exports = (sequelize) => {
       defaultValue: DataTypes.UUIDV4,
     },
     diets: { type: DataTypes.ARRAY(DataTypes.STRING) },
+    dishTypes: { type: DataTypes.ARRAY(DataTypes.STRING) },
   });
 };

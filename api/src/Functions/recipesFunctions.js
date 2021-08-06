@@ -29,6 +29,7 @@ async function getRecipesbyName(req, res, next) {
           analyzedInstructions: e.analyzedInstructions,
           image: e.image,
           diets: e.diets,
+          dishTypes: e.dishTypes,
         };
       });
       if (finded.length === 0 && dbrecipes.length === 0) {
@@ -62,6 +63,7 @@ async function getRecipesbyId(req, res, next) {
           analyzedInstructions: recetaapi.data.analyzedInstructions,
           image: recetaapi.data.image,
           diets: recetaapi.data.diets,
+          dishTypes: recetaapi.data.dishTypes,
         };
         return res.json(recetaapi);
       }
@@ -83,6 +85,7 @@ async function postRecipe(req, res, next) {
       analyzedInstructions,
       image,
       diets,
+      dishTypes,
     } = req.body;
 
     if (!title || !summary) {
@@ -98,6 +101,7 @@ async function postRecipe(req, res, next) {
       analyzedInstructions,
       image,
       diets,
+      dishTypes,
       id: uuidv4(),
     });
     res.json("Recipe uploaded");
