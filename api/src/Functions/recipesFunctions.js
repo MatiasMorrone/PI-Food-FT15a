@@ -20,7 +20,16 @@ async function getRecipesbyName(req, res, next) {
         el.title.toUpperCase().includes(name.toUpperCase())
       );
 
+      let dietswithvg = [];
+
       finded = finded.map((e) => {
+        if (e.vegetarian) {
+          dietswithvg = e.diets.concat(["vegetarian"]);
+          console.log(dietswithvg);
+        } else {
+          dietswithvg = e.diets;
+          console.log(dietswithvg);
+        }
         return {
           title: e.title,
           summary: e.summary,
@@ -28,7 +37,7 @@ async function getRecipesbyName(req, res, next) {
           healthScore: e.healthScore,
           analyzedInstructions: e.analyzedInstructions,
           image: e.image,
-          diets: e.diets,
+          diets: dietswithvg,
           dishTypes: e.dishTypes,
         };
       });
@@ -55,6 +64,12 @@ async function getRecipesbyId(req, res, next) {
         let recetaapi = await axios.get(
           `https://api.spoonacular.com/recipes/${id}/information?apiKey=${YOUR_API_KEY}`
         );
+        let dietswithVg = [];
+        if (recetaapi.data.vegetarian) {
+          dietswithVg = recetaapi.data.diets.concat(["vegetarian"]);
+        } else {
+          dietswithVg = recetaapi.data.diets;
+        }
         recetaapi = {
           title: recetaapi.data.title,
           summary: recetaapi.data.summary,
@@ -62,8 +77,9 @@ async function getRecipesbyId(req, res, next) {
           healthScore: recetaapi.data.healthScore,
           analyzedInstructions: recetaapi.data.analyzedInstructions,
           image: recetaapi.data.image,
-          diets: recetaapi.data.diets,
+          diets: dietswithVg,
           dishTypes: recetaapi.data.dishTypes,
+          vegetarian: recetaapi.data.vegetarian,
         };
         return res.json(recetaapi);
       }
@@ -86,6 +102,7 @@ async function postRecipe(req, res, next) {
       image,
       diets,
       dishTypes,
+      vegetarian,
     } = req.body;
 
     if (!title || !summary) {
@@ -102,6 +119,7 @@ async function postRecipe(req, res, next) {
       image,
       diets,
       dishTypes,
+      vegetarian,
       id: uuidv4(),
     });
     res.json("Recipe uploaded");
