@@ -5,7 +5,7 @@ function Landing() {
   return (
     <div>
       <Link to="/home">
-        <button className="buttonhome">HOME</button>
+        <p className="buttonhome">HOME</p>
       </Link>
     </div>
   );

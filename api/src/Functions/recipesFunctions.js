@@ -6,41 +6,41 @@ const { v4: uuidv4 } = require("uuid");
 
 async function getRecipesbyName(req, res, next) {
   const { name } = req.query;
+  let recipes = await axios.get(
+    `https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&number=100&addRecipeInformation=true`
+  );
+  let dbrecipes = await Recipe.findAll();
+  let dietswithvg = [];
+
+  recipes = recipes.data.results.map((e) => {
+    if (e.vegetarian) {
+      dietswithvg = e.diets.concat(["vegetarian"]);
+    } else {
+      dietswithvg = e.diets;
+    }
+    return {
+      title: e.title,
+      summary: e.summary,
+      spoonacularScore: e.spoonacularScore,
+      healthScore: e.healthScore,
+      analyzedInstructions: e.analyzedInstructions,
+      image: e.image,
+      diets: dietswithvg,
+      dishTypes: e.dishTypes,
+    };
+  });
+
   if (name) {
     try {
-      let dbrecipes = await Recipe.findAll({
-        where: { title: { [Op.like]: `%${name}%` } },
+      dbrecipes = dbrecipes.filter((e) => {
+        console.log(e.title);
+        return e.title.toUpperCase().includes(name.toUpperCase());
       });
 
-      const recipes = await axios.get(
-        `https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&number=100&addRecipeInformation=true`
-      );
-
-      let finded = recipes.data.results.filter((el) =>
+      let finded = recipes.filter((el) =>
         el.title.toUpperCase().includes(name.toUpperCase())
       );
 
-      let dietswithvg = [];
-
-      finded = finded.map((e) => {
-        if (e.vegetarian) {
-          dietswithvg = e.diets.concat(["vegetarian"]);
-          console.log(dietswithvg);
-        } else {
-          dietswithvg = e.diets;
-          console.log(dietswithvg);
-        }
-        return {
-          title: e.title,
-          summary: e.summary,
-          spoonacularScore: e.spoonacularScore,
-          healthScore: e.healthScore,
-          analyzedInstructions: e.analyzedInstructions,
-          image: e.image,
-          diets: dietswithvg,
-          dishTypes: e.dishTypes,
-        };
-      });
       if (finded.length === 0 && dbrecipes.length === 0) {
         return res.status(400).json("Recipe not found");
       }
@@ -49,7 +49,7 @@ async function getRecipesbyName(req, res, next) {
       next(error);
     }
   } else {
-    res.status(400).json("Please include a name to find a recipe");
+    return res.status(200).json(recipes.concat(dbrecipes));
   }
 }
 
