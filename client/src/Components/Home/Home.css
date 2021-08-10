@@ -1,0 +1,41 @@
+.solofoto {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 1) 11%,
+    rgba(255, 255, 255, 1) 100%
+  );
+}
+
+.divHome {
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+}
+
+.navdeHome {
+  margin: 0 auto;
+  max-width: 200px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 25px;
+}
+.buttoncreaterecipe {
+  width: 200px;
+  border-radius: 20px;
+  color: white;
+  background-color: black;
+  border: none;
+  padding: 5px;
+}
+.buttoncreaterecipe:hover {
+  color: black;
+  border: grey solid 1px;
+  background: gray;
+}
+.titulohome {
+  padding-right: 25px;
+  font-style: oblique;
+  font-size: 27px;
+}

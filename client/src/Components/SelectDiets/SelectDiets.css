@@ -1,0 +1,13 @@
+.selectDietas {
+  padding: 5px;
+  border-radius: 20px;
+  color: white;
+  background-color: black;
+  border: none;
+  padding: 5px;
+}
+.selectDietas:hover {
+  color: black;
+  border: grey solid 1px;
+  background: gray;
+}

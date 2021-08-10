@@ -1,7 +1,6 @@
 const axios = require("axios");
 const { Recipe } = require("../db");
 const { YOUR_API_KEY } = process.env;
-const { Op } = require("sequelize");
 const { v4: uuidv4 } = require("uuid");
 
 async function getRecipesbyName(req, res, next) {
@@ -20,7 +19,7 @@ async function getRecipesbyName(req, res, next) {
     }
     return {
       title: e.title,
-      summary: e.summary,
+      summary: e.summary.replace(/<[^>]*>/g, ""),
       spoonacularScore: e.spoonacularScore,
       healthScore: e.healthScore,
       analyzedInstructions: e.analyzedInstructions,
@@ -72,7 +71,7 @@ async function getRecipesbyId(req, res, next) {
         }
         recetaapi = {
           title: recetaapi.data.title,
-          summary: recetaapi.data.summary,
+          summary: recetaapi.data.summary.replace(/<[^>]*>/g, ""),
           spoonacularScore: recetaapi.data.spoonacularScore,
           healthScore: recetaapi.data.healthScore,
           analyzedInstructions: recetaapi.data.analyzedInstructions,
