@@ -6,7 +6,6 @@ export default function SelectOrder() {
   const dispatch = useDispatch();
 
   function orderedFunction(e) {
-    console.log(e.target.value);
     if (e.target.value === "AZ") {
       dispatch(orderAZ());
     } else if (e.target.value === "ZA") {

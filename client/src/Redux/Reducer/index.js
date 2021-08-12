@@ -3,15 +3,26 @@ const initialState = {
   recipeById: {},
   diets: [],
   orderedRecipes: [],
+  flag: true,
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case "GET_RECIPES_NAME":
+      if (state.flag) {
+        return {
+          ...state,
+          flag: false,
+          recipes: action.payload,
+        };
+      }
+
       return {
         ...state,
+        orderedRecipes: action.payload,
         recipes: action.payload,
       };
+
     case "GET_RECIPES_ID":
       return {
         ...state,

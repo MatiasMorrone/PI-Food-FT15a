@@ -1,5 +1,4 @@
 const axios = require("axios");
-
 export function getRecipeByNameQuery(name) {
   return function (dispatch) {
     if (!name) {
@@ -31,7 +30,6 @@ export function getDiets() {
 }
 
 export function orderAZ() {
-  console.log("estoy en orderaz");
   return function (dispatch) {
     return dispatch({ type: "ORDER_AZ" });
   };
