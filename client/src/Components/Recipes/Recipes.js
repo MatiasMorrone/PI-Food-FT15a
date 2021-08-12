@@ -8,11 +8,10 @@ const Recipes = () => {
   const recipes = useSelector((state) => state.recipes);
   const orderedRecipes = useSelector((state) => state.orderedRecipes);
 
-  console.log(recipes);
   return (
     <div className="Contener">
       {orderedRecipes.length
-        ? orderedRecipes.data.map((recipe, idx) => {
+        ? orderedRecipes.map((recipe, idx) => {
             return (
               <div>
                 <Link to="#">
@@ -28,12 +27,12 @@ const Recipes = () => {
             );
           })
         : recipes.data &&
-          recipes.data.map((recipe, idx) => {
+          recipes.data.map((recipe, idxc) => {
             return (
               <div>
                 <Link to="#">
                   <Recipe
-                    key={idx}
+                    key={idxc}
                     title={recipe.title}
                     image={recipe.image}
                     diets={recipe.diets}

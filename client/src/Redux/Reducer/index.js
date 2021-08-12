@@ -33,9 +33,10 @@ export default (state = initialState, action) => {
           }
           return 0;
         });
-        return { ...state, orderedRecipes: orderedAZ };
+        let OrderAZ = orderedAZ.map((recipe) => recipe);
+        return { ...state, orderedRecipes: OrderAZ };
       } else {
-        let ordered = state.recipes.sort(function (a, b) {
+        let ordered = state.recipes.data.sort(function (a, b) {
           if (a.title > b.title) {
             return 1;
           }
@@ -44,7 +45,8 @@ export default (state = initialState, action) => {
           }
           return 0;
         });
-        return { ...state, orderedRecipes: ordered };
+        let OrderAZ = ordered.map((recipe) => recipe);
+        return { ...state, orderedRecipes: OrderAZ };
       }
     case "ORDER_ZA":
       if (state.orderedRecipes.length > 0) {
@@ -57,9 +59,10 @@ export default (state = initialState, action) => {
           }
           return 0;
         });
-        return { ...state, orderedRecipes: orderedZA };
+        let OrdenZA = orderedZA.map((recipe) => recipe);
+        return { ...state, orderedRecipes: OrdenZA };
       } else {
-        let ordered = state.recipes.sort(function (a, b) {
+        let ordered = state.recipes.data.sort(function (a, b) {
           if (a.title < b.title) {
             return 1;
           }
@@ -68,7 +71,8 @@ export default (state = initialState, action) => {
           }
           return 0;
         });
-        return { ...state, orderedRecipes: ordered };
+        let OrdenZA = ordered.map((recipe) => recipe);
+        return { ...state, orderedRecipes: OrdenZA };
       }
 
     case "ORDER_SCORE":
@@ -82,9 +86,10 @@ export default (state = initialState, action) => {
           }
           return 0;
         });
-        return { ...state, orderedRecipes: orderedScore };
+        let OrdenScore = orderedScore.map((recipe) => recipe);
+        return { ...state, orderedRecipes: OrdenScore };
       } else {
-        let ordered = state.recipes.sort(function (a, b) {
+        let ordered = state.recipes.data.sort(function (a, b) {
           if (a.spoonacularScore < b.spoonacularScore) {
             return 1;
           }
@@ -93,7 +98,8 @@ export default (state = initialState, action) => {
           }
           return 0;
         });
-        return { ...state, orderedRecipes: ordered };
+        let OrdenScore = ordered.map((recipe) => recipe);
+        return { ...state, orderedRecipes: OrdenScore };
       }
     case "GET_DIETS_RECIPES":
       if (state.orderedRecipes.length > 0) {
@@ -101,7 +107,7 @@ export default (state = initialState, action) => {
           return recipe.diets.includes(action.payload);
         });
       } else {
-        var dietRecipes = state.recipes.filter((recipe) => {
+        var dietRecipes = state.recipes.data.filter((recipe) => {
           return recipe.diets.includes(action.payload);
         });
       }

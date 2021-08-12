@@ -20,7 +20,7 @@ export default function Home() {
   useEffect(() => {
     dispatch(getDiets());
   }, [dispatch]);
-  console.log(recipes);
+
   return (
     <div className="solofoto">
       <div className="divHome">

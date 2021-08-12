@@ -14,7 +14,7 @@ export default function SearchRecipe() {
   }
 
   return (
-    <div>
+    <div className="searchrecipe">
       <input
         onChange={(e) => onChangeRecipe(e)}
         className="inputhome"
@@ -23,7 +23,9 @@ export default function SearchRecipe() {
         id="Name"
         name="Name"
       />
-      <button onClick={onClick}>Search</button>
+      <button className="buttonsearch" onClick={onClick}>
+        Search
+      </button>
     </div>
   );
 }

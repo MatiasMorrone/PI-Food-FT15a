@@ -6,7 +6,7 @@ export default function SelectOrder() {
   const dispatch = useDispatch();
 
   function orderedFunction(e) {
-    console.log(e);
+    console.log(e.target.value);
     if (e.target.value === "AZ") {
       dispatch(orderAZ());
     } else if (e.target.value === "ZA") {
@@ -17,7 +17,14 @@ export default function SelectOrder() {
   }
   return (
     <div>
-      <select className="select" onChange={(e) => orderedFunction(e)}>
+      <select
+        defaultValue={"ORDER"}
+        className="select"
+        onChange={(e) => orderedFunction(e)}
+      >
+        <option value="ORDER" disabled hidden>
+          Order
+        </option>
         <option value="AZ">AZ</option>
         <option value="ZA">ZA</option>
         <option value="Score">Score</option>
