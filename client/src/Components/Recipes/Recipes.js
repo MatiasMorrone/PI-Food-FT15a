@@ -14,7 +14,7 @@ const Recipes = () => {
         ? orderedRecipes.map((recipe, idx) => {
             return (
               <div>
-                <Link to="#">
+                <Link to={`/details/${recipe.id}`}>
                   <Recipe
                     key={idx}
                     title={recipe.title}
@@ -30,7 +30,7 @@ const Recipes = () => {
           recipes.data.map((recipe, idxc) => {
             return (
               <div>
-                <Link to="#">
+                <Link to={`/details/${recipe.id}`}>
                   <Recipe
                     key={idxc}
                     title={recipe.title}

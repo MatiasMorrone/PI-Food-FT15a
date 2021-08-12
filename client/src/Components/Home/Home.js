@@ -1,5 +1,5 @@
 import "./Home.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getRecipeByNameQuery, getDiets } from "../../Redux/Actions";
 import Recipes from "../Recipes/Recipes.js";

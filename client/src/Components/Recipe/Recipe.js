@@ -1,6 +1,6 @@
 import "./Recipe.css";
 
-const Recipe = ({ title, image, diets, summary }) => {
+const Recipe = ({ title, image, diets, summary, spoonacularScore }) => {
   return (
     <div>
       <div className="recipe">
@@ -16,6 +16,9 @@ const Recipe = ({ title, image, diets, summary }) => {
               diets.map((diet, idx) => {
                 return <p key={idx}>{diet}</p>;
               })}
+          </div>
+          <div>
+            <p>{spoonacularScore}</p>
           </div>
         </div>
         {/* <div className="recipe__back">

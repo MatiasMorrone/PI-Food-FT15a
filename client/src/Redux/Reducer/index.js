@@ -114,15 +114,16 @@ export default (state = initialState, action) => {
       }
     case "GET_DIETS_RECIPES":
       if (state.orderedRecipes.length > 0) {
-        var dietRecipes = state.orderedRecipes.filter((recipe) => {
+        let dietRecipes = state.orderedRecipes.filter((recipe) => {
           return recipe.diets.includes(action.payload);
         });
+        return { ...state, orderedRecipes: dietRecipes };
       } else {
-        var dietRecipes = state.recipes.data.filter((recipe) => {
+        let dietRecipes = state.recipes.data.filter((recipe) => {
           return recipe.diets.includes(action.payload);
         });
+        return { ...state, orderedRecipes: dietRecipes };
       }
-      return { ...state, orderedRecipes: dietRecipes };
     default:
       return state;
   }

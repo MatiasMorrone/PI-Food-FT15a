@@ -26,6 +26,7 @@ async function getRecipesbyName(req, res, next) {
       image: e.image,
       diets: dietswithvg,
       dishTypes: e.dishTypes,
+      id: e.id,
     };
   });
 
@@ -79,6 +80,7 @@ async function getRecipesbyId(req, res, next) {
           diets: dietswithVg,
           dishTypes: recetaapi.data.dishTypes,
           vegetarian: recetaapi.data.vegetarian,
+          id: recetaapi.data.id,
         };
         return res.json(recetaapi);
       }

@@ -1,3 +1,47 @@
-export default function Detail() {
-  return <div>Soy Detail</div>;
+import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import "./Details.css";
+import { useEffect } from "react";
+import { getRecipeByID } from "../../Redux/Actions";
+
+export default function Detail(props) {
+  const RecipeID = props.match.params.id;
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getRecipeByID(RecipeID));
+  }, [dispatch]);
+
+  const recipeDetail = useSelector((state) => state.recipeById);
+  console.log(recipeDetail);
+  return (
+    <div>
+      {recipeDetail.data.diets.length ? (
+        <div>
+          <div>
+            <h1>{recipeDetail.data.title}</h1>
+            <h3>{recipeDetail.data.summary}</h3>
+            <ul>
+              {recipeDetail.data.diets.map((diet) => {
+                return <li>{diet}</li>;
+              })}
+            </ul>
+            <img src={recipeDetail.data.image} alt="" />
+            <ul>
+              {recipeDetail.data.analyzedInstructions[0].steps.map((step) => {
+                return <li>{step.step}</li>;
+              })}
+            </ul>
+            <p>{recipeDetail.data.healthScore}</p>
+            <p>{recipeDetail.data.spoonacularScore}</p>
+            <p>{recipeDetail.data.dishTypes}</p>
+          </div>
+          <Link to="/home">
+            <p>Home</p>
+          </Link>
+        </div>
+      ) : (
+        <p>Error</p>
+      )}
+    </div>
+  );
 }
