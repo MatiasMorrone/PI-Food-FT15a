@@ -113,14 +113,19 @@ export default (state = initialState, action) => {
         return { ...state, orderedRecipes: OrdenScore };
       }
     case "GET_DIETS_RECIPES":
+      console.log(action);
       if (state.orderedRecipes.length > 0) {
         let dietRecipes = state.orderedRecipes.filter((recipe) => {
-          return recipe.diets.includes(action.payload);
+          if (recipe.diets.includes(action.payload)) {
+            return recipe;
+          }
         });
         return { ...state, orderedRecipes: dietRecipes };
       } else {
         let dietRecipes = state.recipes.data.filter((recipe) => {
-          return recipe.diets.includes(action.payload);
+          if (recipe.diets.includes(action.payload)) {
+            return recipe;
+          }
         });
         return { ...state, orderedRecipes: dietRecipes };
       }

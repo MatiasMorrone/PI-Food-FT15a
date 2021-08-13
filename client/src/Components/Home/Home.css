@@ -22,15 +22,18 @@
   gap: 10px;
   margin-top: 25px;
 }
-.buttoncreaterecipe {
-  width: 200px;
+.linkcreaterecipe {
+  display: flex;
+  width: 150px;
+  justify-content: center;
+  justify-self: center;
   border-radius: 20px;
   color: white;
   background-color: black;
   border: none;
   padding: 5px;
 }
-.buttoncreaterecipe:hover {
+.linkcreaterecipe:hover {
   color: black;
   border: grey solid 1px;
   background: gray;

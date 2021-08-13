@@ -9,13 +9,13 @@ export default function Detail(props) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getRecipeByID(RecipeID));
-  }, [dispatch]);
+  }, [dispatch, RecipeID]);
 
   const recipeDetail = useSelector((state) => state.recipeById);
   console.log(recipeDetail);
   return (
     <div>
-      {recipeDetail.data.diets.length ? (
+      {recipeDetail.data && (
         <div>
           <div>
             <h1>{recipeDetail.data.title}</h1>
@@ -27,21 +27,19 @@ export default function Detail(props) {
             </ul>
             <img src={recipeDetail.data.image} alt="" />
             <ul>
-              {recipeDetail.data.analyzedInstructions[0].steps.map((step) => {
-                return <li>{step.step}</li>;
-              })}
+              {recipeDetail.data.analyzedInstructions[0] &&
+                recipeDetail.data.analyzedInstructions[0].steps &&
+                recipeDetail.data.analyzedInstructions[0].steps.map((step) => {
+                  return <li>{step.step}</li>;
+                })}
             </ul>
             <p>{recipeDetail.data.healthScore}</p>
             <p>{recipeDetail.data.spoonacularScore}</p>
             <p>{recipeDetail.data.dishTypes}</p>
           </div>
-          <Link to="/home">
-            <p>Home</p>
-          </Link>
         </div>
-      ) : (
-        <p>Error</p>
       )}
+      <Link to="/home">Home</Link>
     </div>
   );
 }
