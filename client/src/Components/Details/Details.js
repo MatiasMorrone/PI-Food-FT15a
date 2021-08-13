@@ -15,27 +15,32 @@ export default function Detail(props) {
   console.log(recipeDetail);
   return (
     <div>
-      {recipeDetail.data && (
+      {recipeDetail.title && (
         <div>
           <div>
-            <h1>{recipeDetail.data.title}</h1>
-            <h3>{recipeDetail.data.summary}</h3>
+            <h1>{recipeDetail.title}</h1>
+            <h3>{recipeDetail.summary}</h3>
             <ul>
-              {recipeDetail.data.diets.map((diet) => {
+              {recipeDetail.diets.map((diet) => {
                 return <li>{diet}</li>;
               })}
             </ul>
-            <img src={recipeDetail.data.image} alt="" />
+            <img src={recipeDetail.image} alt="" />
             <ul>
-              {recipeDetail.data.analyzedInstructions[0] &&
-                recipeDetail.data.analyzedInstructions[0].steps &&
-                recipeDetail.data.analyzedInstructions[0].steps.map((step) => {
+              {recipeDetail.analyzedInstructions[0] &&
+                recipeDetail.analyzedInstructions[0].steps &&
+                recipeDetail.analyzedInstructions[0].steps.map((step) => {
                   return <li>{step.step}</li>;
                 })}
             </ul>
-            <p>{recipeDetail.data.healthScore}</p>
-            <p>{recipeDetail.data.spoonacularScore}</p>
-            <p>{recipeDetail.data.dishTypes}</p>
+            <p>{recipeDetail.healthScore}</p>
+            <p>{recipeDetail.spoonacularScore}</p>
+            <p>
+              {recipeDetail.dishTypes.length &&
+                recipeDetail.dishTypes.map((e) => {
+                  return <p>e</p>;
+                })}
+            </p>
           </div>
         </div>
       )}

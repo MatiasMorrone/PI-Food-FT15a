@@ -47,7 +47,7 @@ export default (state = initialState, action) => {
         let OrderAZ = orderedAZ.map((recipe) => recipe);
         return { ...state, orderedRecipes: OrderAZ };
       } else {
-        let ordered = state.recipes.data.sort(function (a, b) {
+        let ordered = state.recipes.sort(function (a, b) {
           if (a.title > b.title) {
             return 1;
           }
@@ -73,7 +73,7 @@ export default (state = initialState, action) => {
         let OrdenZA = orderedZA.map((recipe) => recipe);
         return { ...state, orderedRecipes: OrdenZA };
       } else {
-        let ordered = state.recipes.data.sort(function (a, b) {
+        let ordered = state.recipes.sort(function (a, b) {
           if (a.title < b.title) {
             return 1;
           }
@@ -100,7 +100,7 @@ export default (state = initialState, action) => {
         let OrdenScore = orderedScore.map((recipe) => recipe);
         return { ...state, orderedRecipes: OrdenScore };
       } else {
-        let ordered = state.recipes.data.sort(function (a, b) {
+        let ordered = state.recipes.sort(function (a, b) {
           if (a.spoonacularScore < b.spoonacularScore) {
             return 1;
           }
@@ -113,7 +113,6 @@ export default (state = initialState, action) => {
         return { ...state, orderedRecipes: OrdenScore };
       }
     case "GET_DIETS_RECIPES":
-      console.log(action);
       if (state.orderedRecipes.length > 0) {
         let dietRecipes = state.orderedRecipes.filter((recipe) => {
           if (recipe.diets.includes(action.payload)) {
@@ -122,7 +121,7 @@ export default (state = initialState, action) => {
         });
         return { ...state, orderedRecipes: dietRecipes };
       } else {
-        let dietRecipes = state.recipes.data.filter((recipe) => {
+        let dietRecipes = state.recipes.filter((recipe) => {
           if (recipe.diets.includes(action.payload)) {
             return recipe;
           }

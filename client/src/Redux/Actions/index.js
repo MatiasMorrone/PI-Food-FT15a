@@ -6,7 +6,9 @@ export function getRecipeByNameQuery(name) {
     }
     return axios
       .get(`http://localhost:3001/recipes?name=${name}`)
-      .then((data) => dispatch({ type: "GET_RECIPES_NAME", payload: data }))
+      .then((data) =>
+        dispatch({ type: "GET_RECIPES_NAME", payload: data.data })
+      )
       .catch((err) => console.log(err));
   };
 }
@@ -15,7 +17,7 @@ export function getRecipeByID(id) {
   return function (dispatch) {
     return axios
       .get(`http://localhost:3001/recipes/${id}`)
-      .then((data) => dispatch({ type: "GET_RECIPES_ID", payload: data }))
+      .then((data) => dispatch({ type: "GET_RECIPES_ID", payload: data.data }))
       .catch((err) => console.log(err));
   };
 }

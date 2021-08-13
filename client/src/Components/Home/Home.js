@@ -25,10 +25,9 @@ export default function Home() {
     dispatch(getDiets());
   }, [dispatch]);
 
-  const recipesSearch = useSelector((state) => state.orderedRecipes.data);
-  const recipes = useSelector((state) => state.recipes.data);
+  const recipesSearch = useSelector((state) => state.orderedRecipes);
+  const recipes = useSelector((state) => state.recipes);
 
-  console.log(recipes);
   //PAGINACION PARA TODAS LAS RECETAS
   const indexOfLastPostAll = currentPageAll * postsPerPage;
   const indexOfFirstPostAll = indexOfLastPostAll - postsPerPage;
