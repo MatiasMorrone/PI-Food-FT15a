@@ -43,11 +43,18 @@ export function orderZA() {
   };
 }
 
-export function orderScore() {
+export function orderScoreUp() {
   return function (dispatch) {
-    return dispatch({ type: "ORDER_SCORE" });
+    return dispatch({ type: "ORDER_SCORE_UP" });
   };
 }
+
+export function orderScoreDown() {
+  return function (dispatch) {
+    return dispatch({ type: "ORDER_SCORE_DOWN" });
+  };
+}
+
 export function getDietsRecipes(data) {
   return function (dispatch) {
     return dispatch({ type: "GET_DIETS_RECIPES", payload: data });

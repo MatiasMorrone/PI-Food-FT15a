@@ -12,7 +12,7 @@ export default function Detail(props) {
   }, [dispatch, RecipeID]);
 
   const recipeDetail = useSelector((state) => state.recipeById);
-  console.log(recipeDetail);
+  console.log(recipeDetail.analyzedInstructions);
   return (
     <div>
       {recipeDetail.title && (
@@ -38,7 +38,7 @@ export default function Detail(props) {
             <p>
               {recipeDetail.dishTypes.length &&
                 recipeDetail.dishTypes.map((e, idx) => {
-                  return <p key={idx}>e</p>;
+                  return <p key={idx}>{e}</p>;
                 })}
             </p>
           </div>

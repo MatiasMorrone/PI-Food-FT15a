@@ -50,7 +50,7 @@ export default (state = initialState, action) => {
       let OrdenZA = orderedZA.map((recipe) => recipe);
       return { ...state, orderedRecipes: OrdenZA };
 
-    case "ORDER_SCORE":
+    case "ORDER_SCORE_UP":
       var orderedScore = state.orderedRecipes.sort(function (a, b) {
         if (a.spoonacularScore < b.spoonacularScore) {
           return 1;
@@ -62,6 +62,19 @@ export default (state = initialState, action) => {
       });
       let OrdenScore = orderedScore.map((recipe) => recipe);
       return { ...state, orderedRecipes: OrdenScore };
+
+    case "ORDER_SCORE_DOWN":
+      var orderedScore = state.orderedRecipes.sort(function (a, b) {
+        if (a.spoonacularScore > b.spoonacularScore) {
+          return 1;
+        }
+        if (a.spoonacularScore < b.spoonacularScore) {
+          return -1;
+        }
+        return 0;
+      });
+      var OrdenScoreDown = orderedScore.map((recipe) => recipe);
+      return { ...state, orderedRecipes: OrdenScoreDown };
 
     case "GET_DIETS_RECIPES":
       let dietRecipes = state.recipes.filter((recipe) => {

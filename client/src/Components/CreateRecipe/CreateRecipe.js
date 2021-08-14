@@ -22,6 +22,16 @@ const CreateRecipe = () => {
     if (!values.summary) {
       errors.summary = "You must enter a valid summary for your recipe";
     }
+    if (
+      parseInt(values.spoonacularScore) < 0 ||
+      parseInt(values.spoonacularScore) > 100
+    ) {
+      errors.spoonacularScore =
+        "The spoonacular Score must be a number between 0 and 100";
+    }
+    if (parseInt(values.healtScore) < 0 || parseInt(values.healtScore) > 100) {
+      errors.healtScore = "The health score must be a number between 0 and 100";
+    }
     return errors;
   }
   const handleChange = (e) => {
@@ -117,6 +127,9 @@ const CreateRecipe = () => {
             autoComplete="off"
             onChange={(e) => handleChange(e)}
           />
+          {recipe.errors.spoonacularScore && (
+            <p>The spoonacular Score must be a number between 0 and 100</p>
+          )}
         </div>
         <div>
           <p>Health Score</p>
@@ -127,6 +140,9 @@ const CreateRecipe = () => {
             autoComplete="off"
             onChange={(e) => handleChange(e)}
           />
+          {recipe.errors.spoonacularScore && (
+            <p>The health score must be a number between 0 and 100</p>
+          )}
         </div>
         <div>
           <p>Analized Instructions</p>

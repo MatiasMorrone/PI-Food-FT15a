@@ -1,7 +1,12 @@
 import "./SelectOrder.css";
 import { useDispatch } from "react-redux";
 
-import { orderScore, orderAZ, orderZA } from "../../Redux/Actions";
+import {
+  orderScoreUp,
+  orderAZ,
+  orderZA,
+  orderScoreDown,
+} from "../../Redux/Actions";
 export default function SelectOrder() {
   const dispatch = useDispatch();
 
@@ -10,8 +15,10 @@ export default function SelectOrder() {
       dispatch(orderAZ());
     } else if (e.target.value === "ZA") {
       dispatch(orderZA());
+    } else if (e.target.value === "ScoreUp") {
+      dispatch(orderScoreUp());
     } else {
-      dispatch(orderScore());
+      dispatch(orderScoreDown());
     }
   }
   return (
@@ -26,7 +33,8 @@ export default function SelectOrder() {
         </option>
         <option value="AZ">AZ</option>
         <option value="ZA">ZA</option>
-        <option value="Score">Score</option>
+        <option value="ScoreUp">Score Up</option>
+        <option value="ScoreDown">Score Down</option>
       </select>
     </div>
   );

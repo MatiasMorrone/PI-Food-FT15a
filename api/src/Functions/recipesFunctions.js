@@ -125,7 +125,6 @@ async function postRecipe(req, res, next) {
       image,
       diets,
       dishTypes,
-      vegetarian,
     } = req.body;
 
     if (!title || !summary) {
@@ -142,7 +141,6 @@ async function postRecipe(req, res, next) {
       image,
       diets,
       dishTypes,
-      vegetarian,
       id: uuidv4(),
     });
     res.json("Recipe uploaded");
