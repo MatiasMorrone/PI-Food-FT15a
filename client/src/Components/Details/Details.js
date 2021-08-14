@@ -21,24 +21,24 @@ export default function Detail(props) {
             <h1>{recipeDetail.title}</h1>
             <h3>{recipeDetail.summary}</h3>
             <ul>
-              {recipeDetail.diets.map((diet) => {
-                return <li>{diet}</li>;
+              {recipeDetail.diets.map((diet, idx) => {
+                return <li key={idx}>{diet}</li>;
               })}
             </ul>
             <img src={recipeDetail.image} alt="" />
             <ul>
               {recipeDetail.analyzedInstructions[0] &&
                 recipeDetail.analyzedInstructions[0].steps &&
-                recipeDetail.analyzedInstructions[0].steps.map((step) => {
-                  return <li>{step.step}</li>;
+                recipeDetail.analyzedInstructions[0].steps.map((step, idx) => {
+                  return <li key={idx}>{step.step}</li>;
                 })}
             </ul>
             <p>{recipeDetail.healthScore}</p>
             <p>{recipeDetail.spoonacularScore}</p>
             <p>
               {recipeDetail.dishTypes.length &&
-                recipeDetail.dishTypes.map((e) => {
-                  return <p>e</p>;
+                recipeDetail.dishTypes.map((e, idx) => {
+                  return <p key={idx}>e</p>;
                 })}
             </p>
           </div>

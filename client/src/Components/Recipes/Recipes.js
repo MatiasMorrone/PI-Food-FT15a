@@ -9,30 +9,30 @@ const Recipes = ({ recipes, loading }) => {
   }
 
   return (
-    <div>
-      <div className="Contener">
-        {recipes.length ? (
-          recipes.map((recipe, idx) => {
-            return (
+    <div className="Contener">
+      {recipes.length ? (
+        recipes.map((recipe, idx) => {
+          return (
+            <div key={idx}>
               <Link to={`/details/${recipe.id}`} className="recipe">
                 <Recipe
                   key={idx}
                   id={recipe.id}
-                  name={recipe.name}
+                  title={recipe.title}
                   image={recipe.image}
                   diets={recipe.diets}
                   summary={recipe.summary}
                   spoonacularScore={recipe.spoonacularScore}
                 />
               </Link>
-            );
-          })
-        ) : (
-          <div className="loading">
-            <p>Loading...</p>
-          </div>
-        )}
-      </div>
+            </div>
+          );
+        })
+      ) : (
+        <div className="loading">
+          <p>Loading...</p>
+        </div>
+      )}
     </div>
   );
 };

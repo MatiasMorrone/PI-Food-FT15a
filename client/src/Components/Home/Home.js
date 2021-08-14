@@ -26,16 +26,6 @@ export default function Home() {
   }, [dispatch]);
 
   const recipesSearch = useSelector((state) => state.orderedRecipes);
-  const recipes = useSelector((state) => state.recipes);
-
-  //PAGINACION PARA TODAS LAS RECETAS
-  const indexOfLastPostAll = currentPageAll * postsPerPage;
-  const indexOfFirstPostAll = indexOfLastPostAll - postsPerPage;
-  const currentPostsAll = recipes.slice(
-    indexOfFirstPostAll,
-    indexOfLastPostAll
-  );
-  const paginate = (pageNumber) => setCurrentPageAll(pageNumber);
 
   //PAGINACION PARA LAS RECETAS BUSCADAS
   const indexOfLastPostFilter = currentPageAll * postsPerPage;
@@ -66,7 +56,7 @@ export default function Home() {
         <h1 className="titulohome">Cheff Master</h1>
       </div>
       <div>
-        {recipesSearch.length ? (
+        {recipesSearch.length && (
           <div className="recipeContainer">
             <div className="homepagination">
               <Pagination
@@ -77,19 +67,6 @@ export default function Home() {
             </div>
             <div className="homerecipes">
               <Recipes recipes={currentPostsFilter} loading={loading} />
-            </div>
-          </div>
-        ) : (
-          <div className="recipecontainer">
-            <div className="homepagination">
-              <Pagination
-                postsPerPage={postsPerPage}
-                totalPosts={recipes.length}
-                paginate={paginate}
-              />
-            </div>
-            <div className="homerecipes">
-              <Recipes recipes={currentPostsAll} loading={loading} />
             </div>
           </div>
         )}
