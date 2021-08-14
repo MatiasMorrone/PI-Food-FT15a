@@ -6,7 +6,6 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  console.log(action);
   switch (action.type) {
     case "GET_RECIPES_NAME":
       return {
@@ -70,7 +69,7 @@ export default (state = initialState, action) => {
           return recipe;
         }
       });
-      console.log(dietRecipes);
+
       return { ...state, orderedRecipes: dietRecipes };
 
     default:

@@ -26,7 +26,7 @@ export function getDiets() {
   return function (dispatch) {
     return axios
       .get("http://localhost:3001/types")
-      .then((data) => dispatch({ type: "GET_DIETS", payload: data }))
+      .then((data) => dispatch({ type: "GET_DIETS", payload: data.data }))
       .catch((err) => console.log(err));
   };
 }

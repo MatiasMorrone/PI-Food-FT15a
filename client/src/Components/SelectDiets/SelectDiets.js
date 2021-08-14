@@ -21,8 +21,8 @@ export default function SelectDiets() {
         <option value="Choose diet type" disabled hidden>
           Choose diet type
         </option>
-        {diets.data &&
-          diets.data.map((e, idx) => {
+        {diets.length &&
+          diets.map((e, idx) => {
             return (
               <option value={e.name} key={idx}>
                 {e.name}
