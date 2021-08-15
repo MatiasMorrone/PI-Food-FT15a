@@ -10,7 +10,6 @@ module.exports = (sequelize) => {
         unique: true,
         validate: {
           notNull: { msg: "The recipe must be completed" },
-          isAlpha: { args: true, msg: "The recipe can only contains letters" },
         },
       },
       summary: {
@@ -23,7 +22,7 @@ module.exports = (sequelize) => {
       },
       healthScore: { type: DataTypes.INTEGER },
       analyzedInstructions: {
-        type: DataTypes.JSON,
+        type: DataTypes.ARRAY(DataTypes.STRING),
       },
       image: { type: DataTypes.STRING },
       id: {

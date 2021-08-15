@@ -27,7 +27,10 @@ async function getRecipesbyName(req, res, next) {
           summary: e.summary.replace(/<[^>]*>/g, ""),
           spoonacularScore: e.spoonacularScore,
           healthScore: e.healthScore,
-          analyzedInstructions: e.analyzedInstructions[0],
+          analyzedInstructions:
+            e.analyzedInstructions[0] &&
+            e.analyzedInstructions[0].steps &&
+            e.analyzedInstructions[0].steps.map((step) => step.step),
           image: e.image,
           diets: dietswithvg,
           dishTypes: e.dishTypes,
@@ -60,7 +63,10 @@ async function getRecipesbyName(req, res, next) {
           summary: e.summary.replace(/<[^>]*>/g, ""),
           spoonacularScore: e.spoonacularScore,
           healthScore: e.healthScore,
-          analyzedInstructions: e.analyzedInstructions[0],
+          analyzedInstructions:
+            e.analyzedInstructions[0] &&
+            e.analyzedInstructions[0].step &&
+            e.analyzedInstructions[0].steps.map((step) => step.step),
           image: e.image,
           diets: dietswithvg,
           dishTypes: e.dishTypes,
@@ -97,7 +103,12 @@ async function getRecipesbyId(req, res, next) {
           summary: recetaapi.data.summary.replace(/<[^>]*>/g, ""),
           spoonacularScore: recetaapi.data.spoonacularScore,
           healthScore: recetaapi.data.healthScore,
-          analyzedInstructions: recetaapi.data.analyzedInstructions[0],
+          analyzedInstructions:
+            recetaapi.data.analyzedInstructions[0] &&
+            recetaapi.data.analyzedInstructions[0] &&
+            recetaapi.data.analyzedInstructions[0].steps.map(
+              (step) => step.step
+            ),
           image: recetaapi.data.image,
           diets: dietswithVg,
           dishTypes: recetaapi.data.dishTypes,

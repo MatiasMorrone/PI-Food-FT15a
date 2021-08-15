@@ -12,9 +12,9 @@ const CreateRecipe = () => {
     errors: {},
     spoonacularScore: 0,
     healthScore: 0,
-    analyzedInstructions: { steps: [] },
+    analyzedInstructions: [],
   };
-  const [listStep, setListStep] = useState([]);
+
   const [step, setStep] = useState("");
 
   const [recipe, setRecipe] = useState(initialState);
@@ -63,12 +63,12 @@ const CreateRecipe = () => {
 
     const { errors, ...sinErrors } = recipe;
     const result = validate(sinErrors);
+
     setRecipe((prevState) => {
       return {
         ...prevState,
         healthScore: parseInt(recipe.healthScore),
         spoonacularScore: parseInt(recipe.spoonacularScore),
-        analyzedInstructions: { steps: listStep },
         errors: result,
       };
     });
@@ -88,12 +88,9 @@ const CreateRecipe = () => {
 
   function addStep(e) {
     e.preventDefault();
-    setListStep([...listStep, { step: step }]);
-    setRecipe((prevState) => {
-      return {
-        ...prevState,
-        analyzedInstructions: { steps: listStep },
-      };
+    setRecipe({
+      ...recipe,
+      analyzedInstructions: [...recipe.analyzedInstructions, step],
     });
   }
 

@@ -28,9 +28,8 @@ export default function Detail(props) {
             <img src={recipeDetail.image} alt="" />
             <ul>
               {recipeDetail.analyzedInstructions &&
-                recipeDetail.analyzedInstructions.steps &&
-                recipeDetail.analyzedInstructions.steps.map((step, idx) => {
-                  return <li key={idx}>{step.step}</li>;
+                recipeDetail.analyzedInstructions.map((step, idx) => {
+                  return <li key={idx}>{step}</li>;
                 })}
             </ul>
             <p>{recipeDetail.healthScore}</p>
