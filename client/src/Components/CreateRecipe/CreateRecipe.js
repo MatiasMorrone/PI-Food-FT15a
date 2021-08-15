@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 const axios = require("axios");
 
 const CreateRecipe = () => {
@@ -10,8 +11,12 @@ const CreateRecipe = () => {
     diets: [],
     errors: {},
     spoonacularScore: 0,
-    healtScore: 0,
+    healthScore: 0,
+    analyzedInstructions: { steps: [] },
   };
+  const [listStep, setListStep] = useState([]);
+  const [step, setStep] = useState("");
+
   const [recipe, setRecipe] = useState(initialState);
 
   function validate(values) {
@@ -29,7 +34,10 @@ const CreateRecipe = () => {
       errors.spoonacularScore =
         "The spoonacular Score must be a number between 0 and 100";
     }
-    if (parseInt(values.healtScore) < 0 || parseInt(values.healtScore) > 100) {
+    if (
+      parseInt(values.healthScore) < 0 ||
+      parseInt(values.healthScore) > 100
+    ) {
       errors.healtScore = "The health score must be a number between 0 and 100";
     }
     return errors;
@@ -55,10 +63,12 @@ const CreateRecipe = () => {
 
     const { errors, ...sinErrors } = recipe;
     const result = validate(sinErrors);
-
     setRecipe((prevState) => {
       return {
         ...prevState,
+        healthScore: parseInt(recipe.healthScore),
+        spoonacularScore: parseInt(recipe.spoonacularScore),
+        analyzedInstructions: { steps: listStep },
         errors: result,
       };
     });
@@ -66,11 +76,26 @@ const CreateRecipe = () => {
     if (!Object.keys(result).length) {
       alert("Valid Form");
     }
-    // await axios.post("http://localhost:3001/api/characters/", recipe);
-    // setRecipe(initialState);
-    // document.getElementById("formCreate").reset();
-    // alert("se agrego el personaje");
+    await axios.post("http://localhost:3001/recipes", recipe);
+    setRecipe(initialState);
+    document.getElementById("formCreate").reset();
+    alert("Recipe Uploaded");
   };
+
+  function handleChangeStep(e) {
+    setStep(e.target.value);
+  }
+
+  function addStep(e) {
+    e.preventDefault();
+    setListStep([...listStep, { step: step }]);
+    setRecipe((prevState) => {
+      return {
+        ...prevState,
+        analyzedInstructions: { steps: listStep },
+      };
+    });
+  }
 
   return (
     <div className="form container">
@@ -107,13 +132,13 @@ const CreateRecipe = () => {
               return (
                 <div key={idx}>
                   <p>{type.name}</p>
-                  <button
+                  <p
                     onClick={() => {
                       addDiet(type.name);
                     }}
                   >
                     Add
-                  </button>
+                  </p>
                 </div>
               );
             })}
@@ -146,9 +171,18 @@ const CreateRecipe = () => {
         </div>
         <div>
           <p>Analized Instructions</p>
+          <input
+            id="stepinput"
+            onChange={(e) => handleChangeStep(e)}
+            name="AnalizedInstructions"
+            type="text"
+            autoComplete="off"
+          />
+          <button onClick={(e) => addStep(e)}>Add Step</button>
         </div>
         <button type="submit">Create</button>
       </form>
+      <Link to="/home">Home</Link>
     </div>
   );
 };
