@@ -13,10 +13,11 @@ const CreateRecipe = () => {
     spoonacularScore: 0,
     healthScore: 0,
     analyzedInstructions: [],
+    dishTypes: [],
   };
 
   const [step, setStep] = useState("");
-
+  const [dishType, setDishType] = useState("");
   const [recipe, setRecipe] = useState(initialState);
 
   function validate(values) {
@@ -58,6 +59,13 @@ const CreateRecipe = () => {
     });
   }
 
+  function addDishType(e) {
+    e.preventDefault();
+    setRecipe({
+      ...recipe,
+      dishTypes: [recipe.dishTypes, dishType],
+    });
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -86,6 +94,9 @@ const CreateRecipe = () => {
     setStep(e.target.value);
   }
 
+  function handleChangeDish(e) {
+    setDishType(e.target.value);
+  }
   function addStep(e) {
     e.preventDefault();
     setRecipe({
@@ -167,7 +178,16 @@ const CreateRecipe = () => {
           )}
         </div>
         <div>
-          <p>Analized Instructions</p>
+          <p>Dish type</p>
+          <input
+            name="dishTypes"
+            type="text"
+            onChange={(e) => handleChangeDish(e)}
+          />
+          <button onClick={(e) => addDishType(e)}>Add Dish Type</button>
+        </div>
+        <div>
+          <p>Analized Instruction</p>
           <input
             id="stepinput"
             onChange={(e) => handleChangeStep(e)}
