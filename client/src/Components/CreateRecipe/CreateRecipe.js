@@ -63,7 +63,7 @@ const CreateRecipe = () => {
     e.preventDefault();
     setRecipe({
       ...recipe,
-      dishTypes: [recipe.dishTypes, dishType],
+      dishTypes: [...recipe.dishTypes, dishType],
     });
   }
   const handleSubmit = async (e) => {
@@ -181,6 +181,7 @@ const CreateRecipe = () => {
           <p>Dish type</p>
           <input
             name="dishTypes"
+            autoComplete="off"
             type="text"
             onChange={(e) => handleChangeDish(e)}
           />
