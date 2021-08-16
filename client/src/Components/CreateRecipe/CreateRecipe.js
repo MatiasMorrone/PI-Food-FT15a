@@ -14,6 +14,7 @@ const CreateRecipe = () => {
     healthScore: 0,
     analyzedInstructions: [],
     dishTypes: [],
+    image: "",
   };
 
   const [step, setStep] = useState("");
@@ -53,18 +54,23 @@ const CreateRecipe = () => {
   };
 
   function addDiet(type) {
-    setRecipe({
-      ...recipe,
-      diets: [...recipe.diets, type],
-    });
+    if (!recipe.diets.includes(type)) {
+      setRecipe({
+        ...recipe,
+        diets: [...recipe.diets, type],
+      });
+    }
   }
 
   function addDishType(e) {
     e.preventDefault();
-    setRecipe({
-      ...recipe,
-      dishTypes: [...recipe.dishTypes, dishType],
-    });
+    if (!recipe.dishTypes.includes(dishType)) {
+      setRecipe({
+        ...recipe,
+        dishTypes: [...recipe.dishTypes, dishType],
+      });
+    }
+    // document.getElementsByClassName(("dishtypesinput".value = "")).reset();
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -103,6 +109,7 @@ const CreateRecipe = () => {
       ...recipe,
       analyzedInstructions: [...recipe.analyzedInstructions, step],
     });
+    // document.getElementsByClassName("stepinput").reset();
   }
 
   return (
@@ -165,6 +172,16 @@ const CreateRecipe = () => {
           )}
         </div>
         <div>
+          <p>URL Image</p>
+          <input
+            name="image"
+            className="image"
+            type="text"
+            autoComplete="off"
+            onChange={(e) => handleChange(e)}
+          />
+        </div>
+        <div>
           <p>Health Score</p>
           <input
             name="healthScore"
@@ -180,6 +197,7 @@ const CreateRecipe = () => {
         <div>
           <p>Dish type</p>
           <input
+            className="dishtypesinput"
             name="dishTypes"
             autoComplete="off"
             type="text"
@@ -190,7 +208,7 @@ const CreateRecipe = () => {
         <div>
           <p>Analized Instruction</p>
           <input
-            id="stepinput"
+            className="stepinput"
             onChange={(e) => handleChangeStep(e)}
             name="AnalizedInstructions"
             type="text"
