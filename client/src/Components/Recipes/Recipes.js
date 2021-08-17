@@ -9,7 +9,7 @@ const Recipes = ({ recipes, loading }) => {
   }
 
   return (
-    <div className="Contener">
+    <div className="recipes__container">
       {recipes.length ? (
         recipes.map((recipe, idx) => {
           return (

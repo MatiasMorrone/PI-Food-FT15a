@@ -1,0 +1,65 @@
+.details__container__all {
+  display: flex;
+  color: white;
+  background-color: black;
+}
+.details__container {
+  align-items: center;
+  align-self: center;
+}
+.details__title {
+  color: darkgoldenrod;
+  text-align: center;
+  font-family: cursive;
+}
+.details__summary {
+  text-align: justify;
+  text-decoration: double;
+  font-size: 20px;
+}
+
+.details__subcontainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+.details__diets__title {
+  color: darkgoldenrod;
+  text-decoration: double;
+}
+
+.details__image {
+  display: block;
+  margin: auto;
+  width: 450px;
+  height: auto;
+}
+
+.details__stepbystep__title {
+  color: darkgoldenrod;
+  text-decoration: double;
+}
+
+.details__healthscore__title {
+  color: darkgoldenrod;
+  text-decoration: double;
+}
+
+.details__spoonacularscore__title {
+  color: darkgoldenrod;
+  text-decoration: double;
+}
+.details__dishtypes_title {
+  color: darkgoldenrod;
+  text-decoration: double;
+}
+.details_spoonacularscore {
+  display: block;
+}
+
+.link__home {
+  color: darkgoldenrod;
+  font-size: larger;
+}

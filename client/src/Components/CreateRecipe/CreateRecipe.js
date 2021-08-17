@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import "./CreateRecipe.css";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 const axios = require("axios");
@@ -113,13 +114,13 @@ const CreateRecipe = () => {
   }
 
   return (
-    <div className="form container">
-      <form id="formCreate" onSubmit={(e) => handleSubmit(e)}>
-        <div>
-          <label>title</label>
+    <div className="form_container__all">
+      <form className="form" id="formCreate" onSubmit={(e) => handleSubmit(e)}>
+        <div className="form__container__title">
+          <label>Title</label>
           <input
             name="title"
-            className=""
+            className="form__title__input"
             type="text"
             autoComplete="off"
             onChange={(e) => handleChange(e)}
@@ -128,11 +129,11 @@ const CreateRecipe = () => {
             <p>You must enter a valid title for your recipe</p>
           )}
         </div>
-        <div>
+        <div className="form__summary__container">
           <label>Summary</label>
           <input
             name="summary"
-            className=""
+            className="form__summary__input"
             type="text"
             autoComplete="off"
             onChange={(e) => handleChange(e)}
@@ -142,6 +143,7 @@ const CreateRecipe = () => {
           )}
         </div>
         <div>
+          <p>Select diet types:</p>
           {types.length &&
             types.map((type, idx) => {
               return (

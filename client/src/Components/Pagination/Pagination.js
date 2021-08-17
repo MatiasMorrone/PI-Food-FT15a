@@ -16,8 +16,8 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
             key={idx}
             onClick={() => paginate(number)}
           >
-            <div>
-              <p> {number}</p>
+            <div className="numeropaginado">
+              <p className="numeropaginado"> {number}</p>
             </div>
           </Link>
         ))}
