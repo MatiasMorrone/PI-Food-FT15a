@@ -115,112 +115,135 @@ const CreateRecipe = () => {
 
   return (
     <div className="form_container__all">
-      <form className="form" id="formCreate" onSubmit={(e) => handleSubmit(e)}>
-        <div className="form__container__title">
-          <label>Title</label>
-          <input
-            name="title"
-            className="form__title__input"
-            type="text"
-            autoComplete="off"
-            onChange={(e) => handleChange(e)}
-          />
-          {recipe.errors.title && (
-            <p>You must enter a valid title for your recipe</p>
-          )}
+      <div className="titlePage">
+        <h4>Create your recipe</h4>
+      </div>
+      <form
+        className="form__container"
+        id="formCreate"
+        onSubmit={(e) => handleSubmit(e)}
+      >
+        <div className="left">
+          <div className="form__title">
+            <label>Title</label>
+            <input
+              name="title"
+              className="form__title__input"
+              type="text"
+              autoComplete="off"
+              onChange={(e) => handleChange(e)}
+            />
+            {recipe.errors.title && (
+              <p>You must enter a valid title for your recipe</p>
+            )}
+          </div>
+          <div className="form__summary">
+            <p>Summary</p>
+            <textarea
+              name="summary"
+              className="form__summary__textarea"
+              type="text"
+              autoComplete="off"
+              onChange={(e) => handleChange(e)}
+            />
+            {recipe.errors.summary && (
+              <p>You must enter a valid summary for your recipe</p>
+            )}
+          </div>
+          <div className="form__steps">
+            <p>Analized Instruction</p>
+            <textarea
+              className="stepInput"
+              onChange={(e) => handleChangeStep(e)}
+              name="AnalizedInstructions"
+              type="textarea"
+              autoComplete="off"
+            />
+            <button className="stepButton" onClick={(e) => addStep(e)}>
+              Add Step
+            </button>
+          </div>
+          <div className="form__image">
+            <p>URL Image</p>
+            <input
+              name="image"
+              className="form__image--input"
+              placeholder="url"
+              type="text"
+              autoComplete="off"
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
         </div>
-        <div className="form__summary__container">
-          <label>Summary</label>
-          <input
-            name="summary"
-            className="form__summary__input"
-            type="text"
-            autoComplete="off"
-            onChange={(e) => handleChange(e)}
-          />
-          {recipe.errors.summary && (
-            <p>You must enter a valid summary for your recipe</p>
-          )}
+        <div className="right">
+          <div className="form__diets">
+            <p className="form__diets__title">Select diet types:</p>
+            {types.length &&
+              types.map((type, idx) => {
+                return (
+                  <div key={idx}>
+                    <p>{type.name}</p>
+                    <p
+                      className="stepButton"
+                      onClick={() => {
+                        addDiet(type.name);
+                      }}
+                    >
+                      Add
+                    </p>
+                  </div>
+                );
+              })}
+          </div>
+          <div className="form__score">
+            <p>Spoonacular Score</p>
+            <input
+              name="spoonacularScore"
+              className=""
+              type="number"
+              autoComplete="off"
+              onChange={(e) => handleChange(e)}
+            />
+            {recipe.errors.spoonacularScore && (
+              <p>The spoonacular Score must be a number between 0 and 100</p>
+            )}
+          </div>
+
+          <div className="form__scoreHealth">
+            <p>Health Score</p>
+            <input
+              name="healthScore"
+              className="healthScoreInput"
+              type="number"
+              autoComplete="off"
+              onChange={(e) => handleChange(e)}
+            />
+            {recipe.errors.spoonacularScore && (
+              <p>The health score must be a number between 0 and 100</p>
+            )}
+          </div>
+
+          <div className="form__dishTypes">
+            <p>Dish type</p>
+            <input
+              className="form__dishTypes.input"
+              name="dishTypes"
+              autoComplete="off"
+              type="text"
+              onChange={(e) => handleChangeDish(e)}
+            />
+            <button className="stepButton" onClick={(e) => addDishType(e)}>
+              Add Dish Type
+            </button>
+          </div>
         </div>
-        <div>
-          <p>Select diet types:</p>
-          {types.length &&
-            types.map((type, idx) => {
-              return (
-                <div key={idx}>
-                  <p>{type.name}</p>
-                  <p
-                    onClick={() => {
-                      addDiet(type.name);
-                    }}
-                  >
-                    Add
-                  </p>
-                </div>
-              );
-            })}
-        </div>
-        <div>
-          <p>Spoonacular Score</p>
-          <input
-            name="spoonacularScore"
-            className=""
-            type="number"
-            autoComplete="off"
-            onChange={(e) => handleChange(e)}
-          />
-          {recipe.errors.spoonacularScore && (
-            <p>The spoonacular Score must be a number between 0 and 100</p>
-          )}
-        </div>
-        <div>
-          <p>URL Image</p>
-          <input
-            name="image"
-            className="image"
-            type="text"
-            autoComplete="off"
-            onChange={(e) => handleChange(e)}
-          />
-        </div>
-        <div>
-          <p>Health Score</p>
-          <input
-            name="healthScore"
-            className=""
-            type="number"
-            autoComplete="off"
-            onChange={(e) => handleChange(e)}
-          />
-          {recipe.errors.spoonacularScore && (
-            <p>The health score must be a number between 0 and 100</p>
-          )}
-        </div>
-        <div>
-          <p>Dish type</p>
-          <input
-            className="dishtypesinput"
-            name="dishTypes"
-            autoComplete="off"
-            type="text"
-            onChange={(e) => handleChangeDish(e)}
-          />
-          <button onClick={(e) => addDishType(e)}>Add Dish Type</button>
-        </div>
-        <div>
-          <p>Analized Instruction</p>
-          <input
-            className="stepinput"
-            onChange={(e) => handleChangeStep(e)}
-            name="AnalizedInstructions"
-            type="text"
-            autoComplete="off"
-          />
-          <button onClick={(e) => addStep(e)}>Add Step</button>
-        </div>
-        <button type="submit">Create</button>
+        <button type="submit" className="btn-create">
+          Create
+        </button>
       </form>
-      <Link to="/home">Home</Link>
+      <Link className="linkHome" to="/home">
+        Home
+      </Link>
     </div>
   );
 };

@@ -1,0 +1,98 @@
+.recipe {
+  border: 1px black solid;
+  color: white;
+  border-radius: 20px;
+  align-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  max-width: 30rem;
+  height: 40rem;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: 0.8s ease;
+  background-color: rgb(15, 15, 61);
+}
+
+.recipe__container:hover {
+  transform: scale(1.05);
+  transition: all 0.1s ease-in-out;
+}
+
+.recipe:hover {
+  background-color: rgb(111, 111, 224);
+  transform: rotateY(180deg);
+}
+
+.recipe__front {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: grid;
+  grid-template-rows: 25% 50% 25%;
+  align-items: center;
+}
+.recipe__back {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.recipe__front--title {
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.recipe__front--image {
+  display: flex;
+  padding: 1rem;
+  align-items: center;
+  position: relative;
+}
+.recipe__front--score {
+  position: absolute;
+  border-radius: 50%;
+  background-color: #3e3e5f;
+  align-self: flex-start;
+  padding: 1rem;
+  padding-right: 15px;
+  margin: 1rem;
+}
+
+.recipe__front----diets {
+  padding: 1rem;
+  padding-left: 15px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  font-weight: 300;
+  font-style: italic;
+  text-align: center;
+  font-size: 3px;
+}
+
+.recipe__back {
+  transform: rotateY(180deg);
+  display: grid;
+}
+.recipe__back--title {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 0.5rem 3rem;
+
+  font-size: 1.5rem;
+}
+
+.recipe__back--content {
+  text-align: justify;
+  padding: 0 3rem;
+  color: black;
+  font-size: 1.2rem;
+}

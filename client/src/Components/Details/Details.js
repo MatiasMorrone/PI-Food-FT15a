@@ -23,10 +23,13 @@ export default function Detail(props) {
           <div className="details__container__stepbystep">
             <h3 className="details__stepbystep__title">Step by step:</h3>
             <ul>
-              {recipeDetail.analyzedInstructions &&
+              {recipeDetail.analyzedInstructions.length ? (
                 recipeDetail.analyzedInstructions.map((step, idx) => {
                   return <li key={idx}>{step}</li>;
-                })}
+                })
+              ) : (
+                <li>No instructions to this recipe</li>
+              )}
             </ul>
           </div>
           <div className="details__subcontainer">

@@ -13,7 +13,7 @@ async function getRecipesbyName(req, res, next) {
         `https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&number=100&addRecipeInformation=true&query=${name}`
       );
       let dbrecipes = await Recipe.findAll({
-        where: { title: { [Op.like]: `%${name}%` } },
+        where: { title: { [Op.iLike]: `%${name}%` } },
       });
       let dietswithvg = [];
       recipes = recipes.data.results.map((e) => {
