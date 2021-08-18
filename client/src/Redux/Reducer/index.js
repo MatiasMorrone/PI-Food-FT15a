@@ -3,6 +3,7 @@ const initialState = {
   recipeById: {},
   diets: [],
   orderedRecipes: [],
+  flag: "All",
 };
 
 export default (state = initialState, action) => {
@@ -12,6 +13,7 @@ export default (state = initialState, action) => {
         ...state,
         orderedRecipes: action.payload,
         recipes: action.payload,
+        flag: "One",
       };
 
     case "GET_RECIPES_ID":
@@ -83,7 +85,7 @@ export default (state = initialState, action) => {
         }
       });
 
-      return { ...state, orderedRecipes: dietRecipes };
+      return { ...state, orderedRecipes: dietRecipes, flag: "One" };
 
     default:
       return state;

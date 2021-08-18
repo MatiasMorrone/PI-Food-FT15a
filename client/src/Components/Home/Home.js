@@ -14,6 +14,14 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [currentPageAll, setCurrentPageAll] = useState(1);
   const [postsPerPage] = useState(9);
+  const flag = useSelector((state) => state.flag);
+  const recipesSearch = useSelector((state) => state.orderedRecipes);
+
+  useEffect(() => {
+    if (flag !== "All") {
+      setCurrentPageAll(1);
+    }
+  }, [dispatch, flag, recipesSearch]);
 
   useEffect(() => {
     setLoading(true);
@@ -24,8 +32,6 @@ export default function Home() {
   useEffect(() => {
     dispatch(getDiets());
   }, [dispatch]);
-
-  const recipesSearch = useSelector((state) => state.orderedRecipes);
 
   //PAGINACION PARA LAS RECETAS BUSCADAS
   const indexOfLastPostFilter = currentPageAll * postsPerPage;
