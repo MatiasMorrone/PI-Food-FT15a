@@ -1,24 +1,29 @@
 .landing {
-  background-image: url("../../Images/Landingfondo.jpeg");
-  background-position: 0px -75px;
+  background-image: url("../../Images/landing.jpg");
+
   background-repeat: no-repeat;
-  /* background-size: 1375px 700px; */
+  background-position: 0 -650px;
   position: fixed;
   width: 100%;
   height: 100%;
   background-size: cover;
 }
 .pdeHome {
-  text-align: left;
-  color: black;
-  margin-left: 100px;
+  text-align: center;
+  color: rgb(45, 45, 61);
+  padding-left: 450px;
   font-size: 25px;
+  padding-top: 150px;
   font-style: italic;
+}
+.pdeHome:hover {
+  color: white;
 }
 
 .tituloLanding {
+  color: rgb(139, 139, 204);
   text-align: left;
-  margin-left: 35px;
+  margin-left: 350px;
   font-size: 88px;
   font-style: oblique;
 }

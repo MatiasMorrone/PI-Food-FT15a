@@ -7,7 +7,7 @@
 .details__container {
   align-items: center;
   align-self: center;
-  padding-left: 30px;
+  padding-left: 35px;
 }
 .details__title {
   color: rgb(31, 31, 88);
@@ -63,7 +63,8 @@
 
 .link__home {
   color: rgb(31, 31, 88);
-  font-size: larger;
+  font-size: 20px;
   padding-right: 35px;
-  padding-top: 25px;
+  text-align: center;
+  padding-top: 15px;
 }

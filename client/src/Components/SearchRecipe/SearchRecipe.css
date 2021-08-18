@@ -9,9 +9,11 @@
 }
 .buttonsearch {
   border-radius: 20px;
+  color: white;
   border: none;
+  background-color: rgb(11, 11, 54);
 }
 .buttonsearch:hover {
-  background-color: black;
-  color: white;
+  background-color: rgb(60, 60, 139);
+  color: black;
 }

@@ -39,7 +39,7 @@ export default function Home() {
   return (
     <div className="solofoto">
       <div className="divHome">
-        <nav className="navdeHome">
+        <nav className="containerHome">
           <SelectDiets />
           <div>
             <SelectOrder />
@@ -56,7 +56,7 @@ export default function Home() {
         <h1 className="titulohome">Cheff Master</h1>
       </div>
       <div>
-        {recipesSearch.length && (
+        {recipesSearch.length ? (
           <div className="recipeContainer">
             <div className="homepagination">
               <Pagination
@@ -69,6 +69,8 @@ export default function Home() {
               <Recipes recipes={currentPostsFilter} loading={loading} />
             </div>
           </div>
+        ) : (
+          <h4 className="noRecipe">No recipe founded</h4>
         )}
       </div>
     </div>
