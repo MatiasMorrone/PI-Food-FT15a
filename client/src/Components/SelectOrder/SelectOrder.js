@@ -6,6 +6,8 @@ import {
   orderAZ,
   orderZA,
   orderScoreDown,
+  orderHealthUp,
+  orderHealthDown,
 } from "../../Redux/Actions";
 export default function SelectOrder() {
   const dispatch = useDispatch();
@@ -17,6 +19,10 @@ export default function SelectOrder() {
       dispatch(orderZA());
     } else if (e.target.value === "ScoreUp") {
       dispatch(orderScoreUp());
+    } else if (e.target.value === "HealthUp") {
+      dispatch(orderHealthUp());
+    } else if (e.target.value === "HealthDown") {
+      dispatch(orderHealthDown());
     } else {
       dispatch(orderScoreDown());
     }
@@ -35,6 +41,8 @@ export default function SelectOrder() {
         <option value="ZA">ZA</option>
         <option value="ScoreUp">Score Up</option>
         <option value="ScoreDown">Score Down</option>
+        <option value="HealthUp">Health Up</option>
+        <option value="HealthDown">Health Down</option>
       </select>
     </div>
   );

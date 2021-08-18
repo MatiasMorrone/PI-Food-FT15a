@@ -60,3 +60,15 @@ export function getDietsRecipes(data) {
     return dispatch({ type: "GET_DIETS_RECIPES", payload: data });
   };
 }
+
+export function orderHealthDown() {
+  return function (dispatch) {
+    return dispatch({ type: "ORDER_HEALTH_DOWN" });
+  };
+}
+
+export function orderHealthUp() {
+  return function (dispatch) {
+    return dispatch({ type: "ORDER_HEALTH_UP" });
+  };
+}

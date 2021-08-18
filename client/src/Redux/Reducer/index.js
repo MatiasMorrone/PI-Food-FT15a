@@ -78,6 +78,32 @@ export default (state = initialState, action) => {
       var OrdenScoreDown = orderedScore.map((recipe) => recipe);
       return { ...state, orderedRecipes: OrdenScoreDown };
 
+    case "ORDER_HEALTH_DOWN":
+      var orderedScore = state.orderedRecipes.sort(function (a, b) {
+        if (a.healthScore > b.healthScore) {
+          return 1;
+        }
+        if (a.healthScore < b.healthScore) {
+          return -1;
+        }
+        return 0;
+      });
+      var OrdenScoreDown = orderedScore.map((recipe) => recipe);
+      return { ...state, orderedRecipes: OrdenScoreDown };
+
+    case "ORDER_HEALTH_UP":
+      var orderedScore = state.orderedRecipes.sort(function (a, b) {
+        if (a.healthScore < b.healthScore) {
+          return 1;
+        }
+        if (a.healthScore > b.healthScore) {
+          return -1;
+        }
+        return 0;
+      });
+      var OrdenScoreDown = orderedScore.map((recipe) => recipe);
+      return { ...state, orderedRecipes: OrdenScoreDown };
+
     case "GET_DIETS_RECIPES":
       let dietRecipes = state.recipes.filter((recipe) => {
         if (recipe.diets.includes(action.payload)) {
