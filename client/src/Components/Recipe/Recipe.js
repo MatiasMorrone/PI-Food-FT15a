@@ -20,11 +20,7 @@ const Recipe = ({ title, image, diets, summary, spoonacularScore }) => {
         <div className="recipe__front--diets">
           {diets &&
             diets.map((diet, idx) => {
-              return (
-                <p recipe__front--diets key={idx}>
-                  {diet}
-                </p>
-              );
+              return <p key={idx}>{diet}</p>;
             })}
         </div>
       </div>

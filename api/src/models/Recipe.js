@@ -24,7 +24,7 @@ module.exports = (sequelize) => {
       analyzedInstructions: {
         type: DataTypes.ARRAY(DataTypes.STRING),
       },
-      image: { type: DataTypes.STRING },
+      image: { type: DataTypes.TEXT },
       id: {
         allowNull: false,
         type: DataTypes.UUID,

@@ -71,6 +71,7 @@ const CreateRecipe = () => {
         dishTypes: [...recipe.dishTypes, dishType],
       });
     }
+    document.getElementsByClassName("form__dishTypes.input")[0].value = "";
     // document.getElementsByClassName(("dishtypesinput".value = "")).reset();
   }
   const handleSubmit = async (e) => {
@@ -110,7 +111,7 @@ const CreateRecipe = () => {
       ...recipe,
       analyzedInstructions: [...recipe.analyzedInstructions, step],
     });
-    // document.getElementsByClassName("stepinput").reset();
+    document.getElementsByClassName("stepInput")[0].value = "";
   }
 
   return (
