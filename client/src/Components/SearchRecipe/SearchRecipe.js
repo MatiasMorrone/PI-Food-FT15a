@@ -11,6 +11,7 @@ export default function SearchRecipe() {
   }
   function onClick() {
     dispatch(getRecipeByNameQuery(recipe));
+    document.getElementsByClassName("inputhome")[0].value = "";
   }
 
   return (
@@ -22,6 +23,7 @@ export default function SearchRecipe() {
         type="text"
         id="Name"
         name="Name"
+        autoComplete="off"
       />
       <button className="buttonsearch" onClick={onClick}>
         Search
