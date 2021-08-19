@@ -46,6 +46,12 @@ export default function Home() {
     <div className="solofoto">
       <div className="divHome">
         <nav className="containerHome">
+          <button
+            className="getAll"
+            onClick={() => dispatch(getRecipeByNameQuery())}
+          >
+            All
+          </button>
           <SelectDiets />
           <div>
             <SelectOrder />

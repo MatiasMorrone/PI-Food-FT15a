@@ -17,7 +17,7 @@ export default (state = initialState, action) => {
           flag: "One",
         };
       } else {
-        return { ...state, orderedRecipes: [] };
+        return { ...state, orderedRecipes: [], recipes: [] };
       }
 
     case "GET_RECIPES_ID":
