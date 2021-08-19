@@ -27,11 +27,11 @@ export default function Home() {
     setLoading(true);
     dispatch(getRecipeByNameQuery());
     setLoading(false);
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     dispatch(getDiets());
-  }, [dispatch]);
+  }, []);
 
   //PAGINACION PARA LAS RECETAS BUSCADAS
   const indexOfLastPostFilter = currentPageAll * postsPerPage;
