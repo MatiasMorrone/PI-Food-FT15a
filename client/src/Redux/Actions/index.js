@@ -9,7 +9,10 @@ export function getRecipeByNameQuery(name) {
       .then((data) =>
         dispatch({ type: "GET_RECIPES_NAME", payload: data.data })
       )
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        dispatch({ type: "GET_RECIPES_NAME", payload: "" });
+      });
   };
 }
 

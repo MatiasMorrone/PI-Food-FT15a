@@ -3,6 +3,7 @@
   color: white;
   background-color: black;
   height: 100%;
+  width: 100%;
 }
 .details__container {
   align-items: center;
@@ -68,3 +69,7 @@
   text-align: center;
   padding-top: 15px;
 }
+
+/* #root {
+  background: black;
+} */

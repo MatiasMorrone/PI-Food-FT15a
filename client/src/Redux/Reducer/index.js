@@ -9,12 +9,16 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case "GET_RECIPES_NAME":
-      return {
-        ...state,
-        orderedRecipes: action.payload,
-        recipes: action.payload,
-        flag: "One",
-      };
+      if (action.payload) {
+        return {
+          ...state,
+          orderedRecipes: action.payload,
+          recipes: action.payload,
+          flag: "One",
+        };
+      } else {
+        return { ...state, orderedRecipes: [] };
+      }
 
     case "GET_RECIPES_ID":
       return {
